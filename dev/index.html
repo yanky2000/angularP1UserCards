@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Карточки пользователей</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body ng-app="myApp">
+  {{1+1}}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+
+        <usercards>
+          <!--<h1>{{$ctrl.users[0].email}}</h1>-->
+
+          <usercard ng-repeat="user in {{$ctrl.users}}" user='user'></usercard>
+
+        </usercards>
+
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="app.js"></script>
+
+</body>
+
+</html>
