@@ -27,6 +27,7 @@
     "gulp-remember": "^0.3.1",
     "gulp-sass": "^2.3.1",
     "gulp-sourcemaps": "^2.0.0-alpha",
+    "jquery": "^2.2.4",
     "path": "^0.12.7",
     "pug": "^2.0.0-alpha6",
     "remember": "^1.0.1",
