@@ -7,8 +7,9 @@ var debug = require('gulp-debug');
 var gulpIf = require('gulp-if');
 var newer = require('gulp-newer'); // process only new&modified files
 var del = require('del');
+var babel = require("gulp-babel");
 // var prefixer = require('autoprefixer');
-var autoprefixer = require('gulp-autoprefixer');
+// var autoprefixer = require('gulp-autoprefixer');
 // var cached = require('cached'); // Returns only files with differed content(&names?) to it's cached ones. Usually use since:
 // var remember = require('gulp-remember'); /* Returns cached files content not presented in input argument */
 var path = require('path');
@@ -47,15 +48,12 @@ gulp.task('styles', function () {
             gulpIf(isDevelopment, sourcemaps.init()),
             sass({ indentedSyntax: true }),
             debug({title: 'sass'}),
-            autoprefixer(),
+            // autoprefixer(),
             gulpIf(isDevelopment, sourcemaps.write()),
             gulp.dest(cssDistPath)
         ).on('error', notify.onError());
     // };
-
-
 });
-
 
 /* Apply to separate css files */
 // Should process only new&modified files, delete removed files, concat many files in one.
@@ -73,7 +71,18 @@ gulp.task('stylesConcat', function () {
         .pipe(concat('main.css'))
         .pipe(autoprefixer())
         .pipe(gulp.dest('dist'))
-})
+});
+
+
+/* ========== JAVASCRIPT ==============*/
+gulp.task("js", function () {
+  return gulp.src("dev/**/*.js")
+    .pipe(sourcemaps.init())
+    .pipe(babel())
+    // .pipe(concat("all.js"))
+    .pipe(sourcemaps.write("."))
+    .pipe(gulp.dest("dist"));
+});
 
 
 /* ========== JADE ==============*/
@@ -112,17 +121,17 @@ gulp.task('assets', function () {
 
     // return with gulp.src('assets/**/*.{js,css}') - {js,css} all files with these extensions 
     // operates only for files, changed since last run of 'html' task
-    return gulp.src('dev/**/*.*', { since: gulp.lastRun('assets') }) // starts filtering after assets run for 2nd time
+    return gulp.src('dev/**/*.html', { since: gulp.lastRun('assets') }) // starts filtering after assets run for 2nd time
         .pipe(newer('dist')) //process only new&changed files compared to already existing ones, but doesn't respond to files deletion.
         .pipe(debug({ title: 'assets' }))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist/'));
 });
 
 
 /* Makes first build of dist */
 gulp.task('build', gulp.series(
     'clean',
-    gulp.parallel('assets', 'jade', 'styles')
+    gulp.parallel('assets', 'js', 'jade', 'styles')
 ));
 
 
@@ -130,7 +139,8 @@ gulp.task('build', gulp.series(
 gulp.task('watch', function () {
     gulp.watch(cssDevPath, gulp.series('styles'));
     gulp.watch('dev/**/*.jade', gulp.series('jade'));
-    gulp.watch('dev/**/*.*', gulp.series('assets'));
+    gulp.watch('dev/**/*.html', gulp.series('assets'));
+    gulp.watch('dev/**/*.*', gulp.series('js'));
 });
 
 /* ========== Browser Sync ==========*/
@@ -146,9 +156,6 @@ gulp.task('serve', function () {
 gulp.task('dev',
     gulp.series('build', gulp.parallel('watch', 'serve'))
 );
-
-
-
 
 /* ========== MISC =========== */
 

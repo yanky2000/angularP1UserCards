@@ -1,7 +1,6 @@
 $(function () {
-    
-var users = [
-    {
+
+    var users = [{
         fullName: 'Иванов Иван',
         avatarUrl: 'https://randomuser.me/api/portraits/thumb/men/57.jpg',
         birthdate: '1976-10-10',
@@ -24,15 +23,14 @@ var users = [
         email: 'ivanov@mail.ru'
     }];
 
-var root = 'http://jsonplaceholder.typicode.com';
-// var root = ' http://test-api.javascript.ru/vyang/users';
+    var root = 'http://jsonplaceholder.typicode.com';
+    // var root = ' http://test-api.javascript.ru/vyang/users';
 
-// $.ajax({
-//   url: root + '/users/',
-//   method: 'GET'
-// }).then(function(data) {
-//   console.log(data);
-// });
-
-
+    // $.ajax({
+    //   url: root + '/users/',
+    //   method: 'GET'
+    // }).then(function(data) {
+    //   console.log(data);
+    // });
 });
+//# sourceMappingURL=post.js.map
