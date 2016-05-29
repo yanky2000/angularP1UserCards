@@ -140,7 +140,7 @@ gulp.task('watch', function () {
     gulp.watch(cssDevPath, gulp.series('styles'));
     gulp.watch('dev/**/*.jade', gulp.series('jade'));
     gulp.watch('dev/**/*.html', gulp.series('assets'));
-    gulp.watch('dev/**/*.*', gulp.series('js'));
+    gulp.watch('dev/**/*.js', gulp.series('js'));
 });
 
 /* ========== Browser Sync ==========*/

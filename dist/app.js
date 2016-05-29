@@ -16,18 +16,20 @@
     controllerAs: 'usercards',
     templateUrl: 'users.component.html',
     controller: function (usersData) {
-      console.log(usersData); //выводит: getUsers {users: Object}
-      return this.users = usersData;
+      var self = this;
+      usersData.getUsers().then(function (response) {
+        return self.users = response;
+      });
     }
-  }).service('usersData', getUsers);
+  }).service('usersData', usersData);
 
-  function getUsers($http) {
-    var self = this;
-    //this.users = {};
-
-    $http.get('http://jsonplaceholder.typicode.com/users/').then(function (res) {
-      return self.users = res.data;
-    });
+  function usersData($http) {
+    this.getUsers = function () {
+      return $http.get('http://jsonplaceholder.typicode.com/users/').then(function (res) {
+        console.log(res.data);
+        return res.data;
+      });
+    };
   }
 })();
 //# sourceMappingURL=app.js.map
