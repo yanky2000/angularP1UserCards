@@ -5,27 +5,29 @@
   <meta charset="UTF-8">
   <title>Карточки пользователей</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-  <script src='../node_modules/jquery/dist/jquery.min.js'></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 
-<body >
-  {{1+1}}
+<body>
   <div class="container" ng-app="myApp">
     <div class="row">
       <div class="col-md-6">
 
-        <usercards>
-          <!--<h1>{{$ctrl.users[0].email}}</h1>-->
+        <a ui-sref="home">home</a>
+        <a ui-sref="profile">profile</a>
 
+        <ui-view></ui-view>
+
+        <!--<usercards>
           <usercard ng-repeat="user in {{$ctrl.users}}" user='user'></usercard>
+        </usercards>-->
 
-        </usercards>
 
       </div>
     </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.0/angular-ui-router.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="app.js"></script>
   <!--<script src="post.js"></script>-->
 

@@ -77,10 +77,10 @@ gulp.task('stylesConcat', function () {
 /* ========== JAVASCRIPT ==============*/
 gulp.task("js", function () {
   return gulp.src("dev/**/*.js")
-    .pipe(sourcemaps.init())
+    //.pipe(sourcemaps.init())
     .pipe(babel())
     // .pipe(concat("all.js"))
-    .pipe(sourcemaps.write("."))
+    //.pipe(sourcemaps.write("."))
     .pipe(gulp.dest("dist"));
 });
 

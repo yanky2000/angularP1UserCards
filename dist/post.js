@@ -1,3 +1,5 @@
+'use strict';
+
 $(function () {
 
     var users = [{
@@ -33,4 +35,3 @@ $(function () {
     //   console.log(data);
     // });
 });
-//# sourceMappingURL=post.js.map
